@@ -1,0 +1,89 @@
+{
+  "enable": {
+    "description": "启用记忆大脑",
+    "type": "bool",
+    "default": true
+  },
+  "memory_inject": {
+    "description": "每轮注入相关记忆",
+    "type": "bool",
+    "hint": "关掉就只保留人格注入，不再回忆",
+    "default": true
+  },
+  "embedding_enable": {
+    "description": "启用向量通道",
+    "type": "bool",
+    "hint": "没有本地嵌入服务时保持关闭，否则每次都会连接被拒（日志刷屏但会自动降级）",
+    "default": true
+  },
+  "embedding_api_base": {
+    "description": "嵌入服务地址",
+    "type": "string",
+    "hint": "NAS 上 Ollama 的地址。容器内访问宿主机用 172.17.0.1",
+    "default": "http://172.17.0.1:11434/v1"
+  },
+  "embedding_api_key": {
+    "description": "嵌入服务密钥",
+    "type": "string",
+    "hint": "Ollama 随便填，比如 ollama",
+    "default": "ollama"
+  },
+  "embedding_model": {
+    "description": "嵌入模型",
+    "type": "string",
+    "default": "bge-m3"
+  },
+  "embedding_timeout": {
+    "description": "嵌入超时（秒）",
+    "type": "int",
+    "hint": "失败会自动退化成纯词法检索，不会卡住回复",
+    "default": 8
+  },
+  "top_k": {
+    "description": "每轮注入几条记忆",
+    "type": "int",
+    "hint": "5 条左右最自然，多了像背档案",
+    "default": 5
+  },
+  "threshold": {
+    "description": "记忆召回门限",
+    "type": "float",
+    "hint": "0.14 是绝对下限；实测相关约 0.13-0.31、不相关约 0.08，这个位置分得开",
+    "default": 0.14
+  },
+  "owner_qq": {
+    "description": "主人 QQ 号",
+    "type": "string",
+    "hint": "用于给主人的记忆加权（1.8 倍）",
+    "default": "2224383507"
+  },
+  "persona_file": {
+    "description": "人格装配文件",
+    "type": "string",
+    "hint": "留空则用插件目录下的 persona.json",
+    "default": ""
+  },
+  "maintain_enable": {
+    "description": "启用后台维护",
+    "type": "bool",
+    "hint": "定期给记忆做衰减和清理，防止越积越多",
+    "default": true
+  },
+  "maintain_interval_hours": {
+    "description": "维护间隔（小时）",
+    "type": "int",
+    "default": 6
+  },
+  "auto_capture": {
+    "description": "规则兜底自动记",
+    "type": "bool",
+    "hint": "模型忘了调用 remember 时，靠关键词规则先把重要的话存下来（不影响模型自主记忆）",
+    "default": true
+  },
+  "embedding_backfill": {
+    "description": "自动补历史记忆的向量",
+    "type": "bool",
+    "hint": "开着的话，启动后会慢慢把没有向量的旧记忆补上；中途嵌入服务挂了会自动停",
+    "default": true
+  }
+}
