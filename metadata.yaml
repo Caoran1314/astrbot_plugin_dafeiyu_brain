@@ -1,0 +1,12 @@
+name: dafeiyu_brain
+display_name: 大肥鱼记忆大脑
+desc: 本地 SQLite 长期记忆 + 核心锚点 + 条件人格注入；给大肥鱼两个工具：主动记、主动想
+help: 装上即可用；/brain 看统计，/brain search 关键词 查记忆，/brain export 导出可迁移 JSON
+version: v0.1.0
+author: Caoran1314
+repo: https://github.com/Caoran1314/astrbot_plugin_dafeiyu_brain
+category: AI 增强
+astrbot_version: ">=4.24.0"
+support_platforms:
+  - aiocqhttp
+  - webchat
